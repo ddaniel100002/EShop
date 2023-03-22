@@ -5,7 +5,7 @@ import ProductPage from './pages/ProductPage.js';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter >
       <div className="App">
         <header className="header">
           <Link to="/">Eshop</Link>
