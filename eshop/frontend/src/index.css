@@ -23,8 +23,6 @@ body {
   min-height: 100vh;
 }
 
-
-
 .product img {
   max-width: 400px;
   border-radius: 5px;
@@ -67,4 +65,10 @@ main {
 .product-card:hover {
   box-shadow: 10px 10px 10px #888888;
   transform: scale(1.02);
+}
+
+.card-img-top {
+  object-fit: cover;
+  object-position: center; 
+  width: 100%;
 }

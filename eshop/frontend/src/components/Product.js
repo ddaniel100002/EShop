@@ -8,7 +8,7 @@ function Product(props) {
   return (
     <Card className="product-card">
       <Link to={`/product/${product.token}`}>
-        <img className="card-img-top" src={product.image} alt={product.name} />
+        <img className="card-img-top" src={product.image} alt={product.name}/>
       </Link>
       <Card.Body>
         <Link to={`/product/${product.token}`}>
