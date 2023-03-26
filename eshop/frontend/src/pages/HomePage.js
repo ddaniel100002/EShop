@@ -51,7 +51,7 @@ function HomePage() {
         ) : (
           <Row>
             {products.map((product) => (
-              <Col key={product.token} lg={3} md={4} sm={6} className="mb-3">
+              <Col key={product.token} lg={3} md={4} sm={6} className="mb-3 products">
                 <Product product={product}></Product>
               </Col>
             ))}

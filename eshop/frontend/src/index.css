@@ -10,17 +10,20 @@ body {
 .products {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
+}
+
+.product {
+  border: 1px #404040 solid;
+  margin-bottom: 1rem;
+  flex-basis: calc(25% - 1rem);
 }
 
 .side-allPage {
   min-height: 100vh;
 }
 
-.product {
-  border: 1px #404040 solid;
-  margin: 1rem;
-}
+
 
 .product img {
   max-width: 400px;
