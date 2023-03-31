@@ -5,8 +5,15 @@ import ProductPage from './pages/ProductPage.js';
 import NavBar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import { LinkContainer } from 'react-router-bootstrap';
+import { Link } from 'react-router-dom';
+import { Badge } from 'react-bootstrap';
+import { useContext } from 'react';
+import { Store } from './Store';
 
 function App() {
+  const {state} = useContext(Store);
+  const {cart} = state;
+
   return (
     <BrowserRouter>
       <div className="d-flex flex-column side-allPage">
@@ -16,6 +23,16 @@ function App() {
               <LinkContainer to="/">
                 <NavBar.Brand>Eshop</NavBar.Brand>
               </LinkContainer>
+              <nav className='ms-auto w-50 justify-content-end'>
+                <Link to='/cart' className='nav-link'>
+                <i className='fas fa-shopping-cart text-white'></i>
+                  {cart.cartItems.length > 0 && (
+                    <Badge pill bg='danger'>
+                      {cart.cartItems.reduce((a,c) => a + c.quantity,0)}
+                    </Badge>
+                  )}
+                </Link>
+              </nav>
             </Container>
           </NavBar>
         </header>
