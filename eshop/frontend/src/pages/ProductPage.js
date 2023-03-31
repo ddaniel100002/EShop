@@ -3,6 +3,14 @@ import { useEffect, useReducer } from 'react';
 import axios from 'axios';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Rating from '../components/Rating';
+import Card from 'react-bootstrap/Card';
+import Badge from 'react-bootstrap/Badge';
+import Button from 'react-bootstrap/Button';
+import { Helmet } from 'react-helmet-async';
+import Loading from '../components/Loading';
+import MessageBox from '../components/MessageBox';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -46,10 +54,12 @@ function ProductPage() {
   return (
     <div>
       {loading ? (
-        <p>Loading...</p>
-      ) : error ? (
-        <p>{error}</p>
-      ) : (
+          <Loading/>
+        ) : error ? (
+          <MessageBox variant='danger'>
+            {error}
+          </MessageBox>
+        ) : (
         <div>
           <Row>
             <Col md={6}>
@@ -59,8 +69,67 @@ function ProductPage() {
                 alt={product.name}
               />
             </Col>
-            <Col md={3}></Col>
-            <Col md={3}></Col>
+
+            <Col md={3}>
+              <ListGroup>
+                <ListGroup.Item>
+                  <Helmet>
+                    <title>{product.name}</title>
+                  </Helmet>
+                  <h1>{product.name}</h1>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <Rating
+                    rating={product.rating}
+                    numReviews={product.numReviews}>
+                  </Rating>
+                </ListGroup.Item>
+                <ListGroup.Item>Price: ${product.price}
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  Description: <p className='lead'>{product.description}</p>
+                </ListGroup.Item>
+              </ListGroup>
+            </Col>
+
+            <Col md={3}>
+              <Card>
+                <Card.Body>
+                  <ListGroup variant='flush'>
+                    <ListGroup.Item>
+                      <Row>
+                        <Col>Price:</Col>
+                        <Col>${product.price}</Col>
+                      </Row>
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      <Row>
+                        <Col>Status:</Col>
+                        <Col>
+                          {product.countInStock > 0 ? (
+                            <Badge bg='success'>In Stock</Badge>
+                          ) : (
+                            <Badge bg='danger'>Not in Stock</Badge>
+                          )}
+                        </Col>
+                      </Row>
+                    </ListGroup.Item>
+
+                    {product.countInStock > 0 && (
+                      <ListGroup.Item>
+                        <div className='d-grid'>
+                          <Button
+                            //onClick={addToCartHandler}
+                            variant='primary'>
+                            Add to cart
+                          </Button>
+                        </div>
+                      </ListGroup.Item>
+                    )}
+                  </ListGroup>
+                </Card.Body>
+              </Card>
+            </Col>
           </Row>
         </div>
       )}

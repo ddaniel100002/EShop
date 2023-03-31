@@ -19,7 +19,7 @@ const data = {
         token: 'productB name',
         brand: 'Sporta',
         description: 'A sporty product',
-        countInStock: 6,
+        countInStock: 0,
         rating: 2.5,
         numReviews: 100,
         image: 'images/p2.jpeg',
