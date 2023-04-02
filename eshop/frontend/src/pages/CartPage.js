@@ -61,7 +61,7 @@ function CartPage() {
                                             <Col md={4}>
                                                 <img className="img-fluid rounded img-thumbnail" src={item.image} alt={item.name} />
                                                 {' '}
-                                                <Link to={`/products/${item.token}`}>
+                                                <Link to={`/product/${item.token}`}>
                                                     {item.name}
                                                 </Link>
                                             </Col>
