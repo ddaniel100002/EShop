@@ -40,6 +40,7 @@ function ProductPage() {
   });
 
   useEffect(() => {
+    console.log(product);
     const getProduct = async () => {
       dispatch({ type: 'GET_REQUEST' });
 

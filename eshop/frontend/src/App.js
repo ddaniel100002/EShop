@@ -38,6 +38,7 @@ function App() {
             </Container>
           </NavBar>
         </header>
+        {/* <Header /> */}
         <main>
           <Container className='mt-3'>
             <Routes>
@@ -51,6 +52,7 @@ function App() {
         <footer>
           <div className="text-center">All Rights Reserved © 2023</div>
         </footer>
+        {/* <Footer /> */}
       </div>
     </BrowserRouter>
   );
