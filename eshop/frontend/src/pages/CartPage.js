@@ -89,8 +89,7 @@ function CartPage() {
                                 ))
                             }
                         </ListGroup>
-                    )
-                    }
+                    )}
                 </Col>
                 <Col md={4}>
                     <Card>

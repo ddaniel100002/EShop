@@ -69,6 +69,9 @@ main {
 }
 
 .img-thumbnail {
-  height: 170px;
+  height: 200px;
+}
 
+.small-container {
+  max-width: 600px;
 }
