@@ -57,7 +57,7 @@ function ProductPage() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart } = state;
 
-  const addToCartHandler = async () => {
+  const addToCartHandler = async() => {
     const existedItem = cart.cartItems.find((x) => x._id === product._id);
     const quantity = existedItem ? existedItem.quantity + 1 : 1;
     const { data } = await axios.get(`/api/v1/products/${product._id}`);
