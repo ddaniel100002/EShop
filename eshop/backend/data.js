@@ -1,7 +1,15 @@
+import bcrypt from 'bcryptjs';
+
 const data = {
+  users: [
+    {
+      name: 'Admin',
+      email: 'admin@example.com',
+      password: bcrypt.hashSync('12345')
+    },
+  ],
     products: [
       {
-        _id: 1,
         name: 'productA name',
         category: 'Pharma',
         price: 100,
@@ -14,7 +22,6 @@ const data = {
         image: 'images/P1.jpg',
       },
       {
-        _id: 2,
         name: 'productB name',
         category: 'Sports',
         price: 80,
@@ -27,7 +34,6 @@ const data = {
         image: 'images/p2.jpeg',
       },
       {
-        _id: 3,
         name: 'productC name',
         category: 'Pharma',
         price: 19,
@@ -40,7 +46,6 @@ const data = {
         image: 'images/p3.jpeg',
       },
       {
-        _id: 4,
         name: 'productD name',
         category: 'Food',
         price: 15,
