@@ -40,12 +40,11 @@ function ProductPage() {
   });
 
   useEffect(() => {
-    console.log(product);
     const getProduct = async () => {
       dispatch({ type: 'GET_REQUEST' });
 
       try {
-        const res = await axios.get(`/api/v1/product/token/${token}`);
+        const res = await axios.get(`/api/v1/products/token/${token}`);
         dispatch({ type: 'GET_SUCCESS', payload: res.data });
       } catch (err) {
         dispatch({ type: 'GET_FAIL', payload: getError(err) });
@@ -58,7 +57,7 @@ function ProductPage() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart } = state;
 
-  const addToCartHandler = async() => {
+  const addToCartHandler = async () => {
     const existedItem = cart.cartItems.find((x) => x._id === product._id);
     const quantity = existedItem ? existedItem.quantity + 1 : 1;
     const { data } = await axios.get(`/api/v1/products/${product._id}`);

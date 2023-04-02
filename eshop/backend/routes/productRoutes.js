@@ -8,7 +8,7 @@ productRouter.get('/', async(req, res) => {
   res.send(products);
 });
 
-productRouter.use('/:id', async (req, res) => {
+productRouter.get('/:id', async (req, res) => {
   const product = await Product.findById(req.params.id);
   if (product) {
     res.send(product);
@@ -17,7 +17,7 @@ productRouter.use('/:id', async (req, res) => {
   }
 });
 
-productRouter.use('/token/:token', async(req, res) => {
+productRouter.get('/token/:token', async(req, res) => {
   const product = await Product.findOne({token: req.params.token});
   if (product) {
     res.send(product);
