@@ -1,4 +1,4 @@
-import express from 'express';
+import { express } from '../imports.js';
 import Product from '../models/ProductModel.js';
 
 const productRouter = express.Router();

@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import { mongoose } from "../imports.js";
 
 const productSchema = mongoose.Schema(
     {
