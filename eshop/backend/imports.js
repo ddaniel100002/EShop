@@ -6,5 +6,6 @@ import seedRouter from './routes/seedRoutes.js';
 import productRouter from './routes/productRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import Jwt from 'jsonwebtoken';
+//import bcrypt from 'bcryptjs';
 
-export {dotenv,express,cors,mongoose,seedRouter,productRouter,userRouter,Jwt}; 
+export {dotenv, express, cors, mongoose, seedRouter, productRouter, userRouter, Jwt};
