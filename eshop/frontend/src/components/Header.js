@@ -4,6 +4,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router-dom';
 import Badge from 'react-bootstrap/Badge';
 
+
 function Header(props) {
     return (
         <div>
@@ -13,7 +14,7 @@ function Header(props) {
                         <LinkContainer to="/">
                             <NavBar.Brand>Eshop</NavBar.Brand>
                         </LinkContainer>
-                        <nav className='ms-auto w-50 justify-content-end'>
+                        <nav>
                             <Link to='/cart' className='nav-link'>
                                 <i className='fas fa-shopping-cart text-white'></i>
                                 {props.cart.cartItems.length > 0 && (

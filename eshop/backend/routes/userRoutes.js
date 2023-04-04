@@ -1,4 +1,4 @@
-import { express } from "../imports.js";
+import express from 'express';
 import expressAsyncHandler from 'express-async-handler';
 import bcrypt from 'bcryptjs';
 import User from '../models/UserModel.js';

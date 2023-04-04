@@ -77,7 +77,7 @@ function CartPage() {
                                                 </Button>
                                             </Col>
                                             <Col md={3}>
-                                                {item.price}
+                                                {item.price}$
                                             </Col>
                                             <Col md={2}>
                                                 <Button variant="light" onClick={() => removeItemHandler(item)}>
