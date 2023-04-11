@@ -3,7 +3,7 @@ import axios from 'axios';
 import Loading from '../components/shared/Loading';
 import MessageBox from '../components/shared/MessageBox';
 import Title from '../components/shared/Title';
-import DisplayProducts from '../components/homePage/DisplayProducts';
+import DisplayProducts from '../components/homePage/Products';
 //TODO: Aggregate imports into single js file!!
 
 //TODO: export all case strings into const!!
