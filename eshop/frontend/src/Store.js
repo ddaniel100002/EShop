@@ -39,6 +39,7 @@ const reducer = (state, action) => {
 export function StoreProvider(props) {
     const [state, dispatch] = useReducer(reducer, initialState);
     const body = { state, dispatch };
+    
     return <Store.Provider value={body}>
         {props.children}
     </Store.Provider>
