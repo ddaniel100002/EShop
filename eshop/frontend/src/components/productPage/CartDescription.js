@@ -44,11 +44,11 @@ function CartDescription({ product }) {
                         <Row>
                             <Col>Status:</Col>
                             <Col>
-                                {product.countInStock > 0 ? (
+                                {product.countInStock > 0 ?
                                     <Badge bg='success'>In Stock</Badge>
-                                ) : (
+                                    :
                                     <Badge bg='danger'>Not in Stock</Badge>
-                                )}
+                                }
                             </Col>
                         </Row>
                     </ListGroup.Item>
