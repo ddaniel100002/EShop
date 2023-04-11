@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Badge from 'react-bootstrap/Badge';
 
 
-function Header(props) {
+function Header({ cart }) {
     return (
         <div>
             <header className="header">
@@ -17,9 +17,9 @@ function Header(props) {
                         <nav>
                             <Link to='/cart' className='nav-link'>
                                 <i className='fas fa-shopping-cart text-white'></i>
-                                {props.cart.cartItems.length > 0 && (
+                                {cart.cartItems.length > 0 && (
                                     <Badge pill bg='danger'>
-                                        {props.cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+                                        {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
                                     </Badge>
                                 )}
                             </Link>

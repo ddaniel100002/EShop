@@ -9,14 +9,14 @@ import MessageBox from '../components/MessageBox';
 //TODO: Aggregate imports into single js file!!
 
 //TODO: export all case strings into const!!
-const reducer = (state, action) => {
-  switch (action.type) {
+const reducer = (state, { type, payload }) => {
+  switch (type) {
     case 'GET_REQUEST':
       return { ...state, loading: true };
     case 'GET_SUCCESS':
-      return { ...state, products: action.payload, loading: false };
+      return { ...state, products: payload, loading: false };
     case 'GET_FAIL':
-      return { ...state, loading: false, error: action.payload };
+      return { ...state, loading: false, error: payload };
     default:
       return state;
   }
@@ -47,7 +47,7 @@ function HomePage() {
   return (
     <div>
       <Helmet>
-        <title>EShop</title>
+        <title>E-Shop</title>
       </Helmet>
       <h1>Products</h1>
       <div className="products">

@@ -14,14 +14,14 @@ import MessageBox from '../components/MessageBox';
 import { getError } from '../Utils';
 import { Store } from '../Store';
 
-const reducer = (state, action) => {
-  switch (action.type) {
+const reducer = (state, { type, payload }) => {
+  switch (type) {
     case 'GET_REQUEST':
       return { ...state, loading: true };
     case 'GET_SUCCESS':
-      return { ...state, product: action.payload, loading: false };
+      return { ...state, product: payload, loading: false };
     case 'GET_FAIL':
-      return { ...state, loading: false, error: action.payload };
+      return { ...state, loading: false, error: payload };
     default:
       return state;
   }
