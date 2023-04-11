@@ -4,15 +4,15 @@ import axios from 'axios';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
-import Rating from '../components/Rating';
+import Rating from '../components/shared/Rating';
 import Card from 'react-bootstrap/Card';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
-import { Helmet } from 'react-helmet-async';
-import Loading from '../components/Loading';
-import MessageBox from '../components/MessageBox';
+import Loading from '../components/shared/Loading';
+import MessageBox from '../components/shared/MessageBox';
 import { getError } from '../Utils';
 import { Store } from '../Store';
+import Title from "../components/shared/Title";
 
 const reducer = (state, { type, payload }) => {
   switch (type) {
@@ -93,9 +93,7 @@ function ProductPage() {
             <Col md={3}>
               <ListGroup>
                 <ListGroup.Item>
-                  <Helmet>
-                    <title>{product.name}</title>
-                  </Helmet>
+                  <Title title={product.name}/>
                   <h1>{product.name}</h1>
                 </ListGroup.Item>
                 <ListGroup.Item>

@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { Store } from "../Store";
-import { Helmet } from "react-helmet-async";
-import MessageBox from "../components/MessageBox";
+import MessageBox from "../components/shared/MessageBox";
 import { Link, useNavigate } from "react-router-dom";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -9,6 +8,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import axios from "axios";
+import Title from "../components/shared/Title";
 
 function CartPage() {
     const navigate = useNavigate();
@@ -40,9 +40,7 @@ function CartPage() {
 
     return (
         <div>
-            <Helmet>
-                <title>Shopping Cart</title>
-            </Helmet>
+            <Title title='Shopping Cart'/>
             <Row>
                 <Col md={8}>
                     {cartItems.length === 0 ? (

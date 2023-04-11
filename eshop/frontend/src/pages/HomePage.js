@@ -1,11 +1,9 @@
 import { useEffect, useReducer } from 'react';
 import axios from 'axios';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Product from '../components/Product';
-import { Helmet } from 'react-helmet-async';
-import Loading from '../components/Loading';
-import MessageBox from '../components/MessageBox';
+import Loading from '../components/shared/Loading';
+import MessageBox from '../components/shared/MessageBox';
+import Title from '../components/shared/Title';
+import DisplayProducts from '../components/homePage/DisplayProducts';
 //TODO: Aggregate imports into single js file!!
 
 //TODO: export all case strings into const!!
@@ -46,26 +44,22 @@ function HomePage() {
 
   return (
     <div>
-      <Helmet>
-        <title>E-Shop</title>
-      </Helmet>
+      <Title title='E-Shop' />
       <h1>Products</h1>
       <div className="products">
-        {loading ? (
-          <Loading/>
-        ) : error ? (
-          <MessageBox variant='danger'>
-            {error}
-          </MessageBox>
-        ) : (
-          <Row>
-            {products.map((product) => (
-              <Col key={product.token} lg={3} md={4} sm={6} className="mb-3">
-                <Product product={product}></Product>
-              </Col>
-            ))}
-          </Row>
-        )}
+        {loading ? <Loading />
+          :
+          error ?
+            (
+              <MessageBox variant='danger'>
+                {error}
+              </MessageBox>
+            )
+            :
+            (
+              <DisplayProducts products={products} />
+            )
+        }
       </div>
     </div>
   );

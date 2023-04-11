@@ -11,8 +11,8 @@ import { useContext } from 'react';
 import { Store } from './Store';
 import CartPage from './pages/CartPage';
 import SigninPage from './pages/SigninPage';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import Header from './components/shared/Header';
+import Footer from './components/shared/Footer';
 
 function App() {
   const {state} = useContext(Store);
