@@ -14,18 +14,20 @@ function Product({ product }) {
   const addToCartHandler = async () => {
     const existedItem = cartItems.find((x) => x._id === product._id);
     const quantity = existedItem ? existedItem.quantity + 1 : 1;
-    const { data } = await axios.get(`/api/v1/products/${product._id}`);
-    //TODO: Try/catch this.
 
-    if (data.countInStock < quantity) {
-      window.alert('Sorry. Product is out of stock');
-      return;
+    try {
+      const { data } = await axios.get(`/api/v1/products/${product._id}`);
+
+      if (data.countInStock < quantity) {
+        window.alert('Sorry. Product is out of stock');
+        return;
+      }
+
+      ctxDispatch({type: 'ADD_TO_CART', payload: { ...product, quantity }});
+
+    } catch (err) {
+      ctxDispatch({type: 'GET_FAIL',payload: err.message});
     }
-
-    ctxDispatch({
-      type: 'ADD_TO_CART',
-      payload: { ...product, quantity },
-    });
   }
 
   return (
