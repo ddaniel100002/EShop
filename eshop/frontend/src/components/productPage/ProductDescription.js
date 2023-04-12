@@ -1,16 +1,16 @@
 import {ListGroup, Title, Rating} from '../../Imports';
 
-function ProductDescription({name, rating, numReviews, price, description}) {
+function ProductDescription({title, rating, price, description}) {
     return (
         <ListGroup>
             <ListGroup.Item>
-                <Title title={name} />
-                <h1>{name}</h1>
+                <Title title={title} />
+                <h1>{title}</h1>
             </ListGroup.Item>
             <ListGroup.Item>
                 <Rating
-                    rating={rating}
-                    numReviews={numReviews}>
+                    rating={rating.rate}
+                    numReviews={rating.count}>
                 </Rating>
             </ListGroup.Item>
             <ListGroup.Item>Price: ${price}

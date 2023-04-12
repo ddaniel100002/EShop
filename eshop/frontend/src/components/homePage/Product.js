@@ -27,15 +27,15 @@ function Product({ product }) {
   return (
     <Card className="product-card">
       <Link to={`/product/${product.token}`}>
-        <Card.Img variant="top" src={product.image} alt={product.name} />
+        <Card.Img variant="top" src={product.image} alt={product.title} />
       </Link>
       <Card.Body>
         <Link to={`/product/${product.token}`}>
-          <Card.Title>{product.name}</Card.Title>
+          <Card.Title>{product.title}</Card.Title>
         </Link>
         <Rating
-          rating={product.rating}
-          numReviews={product.numReviews}
+          rating={product.rating.rate}
+          numReviews={product.rating.count}
         ></Rating>
         <Card.Text>{product.price}$</Card.Text>
         {product.countInStock === 0 ?
