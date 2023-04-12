@@ -1,8 +1,6 @@
-import Row  from "react-bootstrap/Row";
-import Col  from "react-bootstrap/Col";
-import Product from "./Product";
+import { Row, Col, Product } from '../../Imports';
 
-function Products({products}) {
+function Products({ products }) {
     return (
         <Row>
             {products.map((product) => (

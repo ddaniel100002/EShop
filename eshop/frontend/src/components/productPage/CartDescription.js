@@ -1,9 +1,4 @@
-import Card from "react-bootstrap/Card";
-import ListGroup from "react-bootstrap/ListGroup";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Badge from "react-bootstrap/Badge";
-import Button from "react-bootstrap/Button";
+import { Card, ListGroup, Row, Col, Badge, Button } from '../../Imports';
 
 function CartDescription({ product, addToCartHandler }) {
     return (

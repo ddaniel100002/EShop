@@ -1,6 +1,4 @@
-import ListGroup from 'react-bootstrap/ListGroup';
-import Title from '../shared/Title';
-import Rating from '../shared/Rating';
+import {ListGroup, Title, Rating} from '../../Imports';
 
 function ProductDescription({name, rating, numReviews, price, description}) {
     return (

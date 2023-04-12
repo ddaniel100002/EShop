@@ -1,15 +1,16 @@
-import { useContext } from "react";
-import { Store } from "../Store";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Title from "../components/shared/Title";
-import Checkout from "../components/cartPage/Checkout";
-import ItemsInCart from "../components/cartPage/ItemsInCart";
-import axios from 'axios';
+import {
+    useContext, Store, Col, Row, Title, Checkout, ItemsInCart, axios, ADD_TO_CART,
+    REMOVE_FROM_CART, useNavigate
+} from '../Imports'
 
 function CartPage() {
     const { state, dispatch: ctxDispatch } = useContext(Store);
     const { cart: { cartItems } } = state;
+    const navigate = useNavigate();
+
+    const checkoutHandler = () => {
+        navigate("/signin?redirect=/shipping");
+    }
 
     const updateCartHandler = async (item, quantity) => {
         const { data } = await axios.get(`/api/v1/products/${item._id}`);
@@ -19,14 +20,14 @@ function CartPage() {
             return;
         }
         ctxDispatch({
-            type: 'ADD_TO_CART',
+            type: ADD_TO_CART,
             payload: { ...item, quantity },
         });
     }
 
     const removeItemHandler = (item) => {
         ctxDispatch({
-            type: 'REMOVE_FROM_CART',
+            type: REMOVE_FROM_CART,
             payload: item,
         })
     }
@@ -39,7 +40,7 @@ function CartPage() {
                     <ItemsInCart removeItemHandler={removeItemHandler} updateCartHandler={updateCartHandler} cartItems={cartItems} />
                 </Col>
                 <Col md={4}>
-                    <Checkout cartItems={cartItems} />
+                    <Checkout cartItems={cartItems} checkoutHandler={checkoutHandler} />
                 </Col>
             </Row>
         </div>

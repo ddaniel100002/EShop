@@ -1,9 +1,4 @@
-import NavBar from "react-bootstrap/Navbar";
-import Container from "react-bootstrap/Container";
-import { LinkContainer } from 'react-router-bootstrap';
-import { Link } from 'react-router-dom';
-import Badge from 'react-bootstrap/Badge';
-
+import {Container, Link, Badge, LinkContainer, NavBar} from '../../Imports';
 
 function Header({ cart }) {
     return (

@@ -1,16 +1,6 @@
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Button from 'react-bootstrap/Button';
-import { useNavigate } from 'react-router-dom';
+import { Card, ListGroup, Button } from '../../Imports';
 
-function Checkout({cartItems}) {
-
-    const navigate = useNavigate();
-
-    const checkoutHandler = () => {
-        navigate("/signin?redirect=/shipping");
-    }
-
+function Checkout({ cartItems, checkoutHandler }) {
     return (
         <Card>
             <Card.Body>

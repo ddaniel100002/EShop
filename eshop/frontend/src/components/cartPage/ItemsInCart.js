@@ -1,9 +1,4 @@
-import ListGroup from "react-bootstrap/ListGroup";
-import Button from "react-bootstrap/Button";
-import MessageBox from "../shared/MessageBox";
-import { Link } from "react-router-dom";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
+import { Row, Col, Link, MessageBox, Button, ListGroup } from '../../Imports';
 
 function ItemsInCart({ cartItems, updateCartHandler, removeItemHandler }) {
     return (

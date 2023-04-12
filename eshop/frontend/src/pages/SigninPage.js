@@ -1,12 +1,7 @@
-import Axios from 'axios';
-import { useLocation, useNavigate } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
-import { useContext, useEffect, useState } from 'react';
-import { Store } from '../Store';
-// import { toast } from 'react-toastify';
-import { getError } from '../Utils';
-import Title from '../components/shared/Title';
-import SignInForm from '../components/signInPage/SignInForm';
+import {
+    axios, useLocation, useNavigate, Container, useContext, useEffect, useState, Store,
+    getError, Title, SignInForm, USER_SIGNIN
+} from '../Imports'
 
 function SigninPage() {
     const navigate = useNavigate();
@@ -23,12 +18,12 @@ function SigninPage() {
     const submitHandler = async (e) => {
         e.preventDefault();
         try {
-            const { data } = await Axios.post('/api/v1/users/signin', {
+            const { data } = await axios.post('/api/v1/users/signin', {
                 email,
                 password,
             });
 
-            ctxDispatch({ type: 'USER_SIGNIN', payload: data });
+            ctxDispatch({ type: USER_SIGNIN, payload: data });
 
             localStorage.setItem('userInfo', JSON.stringify(data));
             navigate(redirect || '/');

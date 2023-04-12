@@ -1,24 +1,15 @@
-import { useParams } from 'react-router-dom';
-import { useEffect, useReducer } from 'react';
-import axios from 'axios';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Loading from '../components/shared/Loading';
-import MessageBox from '../components/shared/MessageBox';
-import { getError } from '../Utils';
-import ProductDescription from '../components/productPage/ProductDescription';
-import CartDescription from '../components/productPage/CartDescription';
-import { Store } from "../Store";
-import { useContext } from 'react';
-import { useNavigate } from "react-router-dom";
+import {
+  useParams, useEffect, useReducer, axios, Row, Col, Loading, MessageBox, getError, ProductDescription, CartDescription,
+  Store, useContext, useNavigate, GET_REQUEST, GET_FAIL, GET_SUCCESS, ADD_TO_CART
+} from '../Imports'
 
 const reducer = (state, { type, payload }) => {
   switch (type) {
-    case 'GET_REQUEST':
+    case GET_REQUEST:
       return { ...state, loading: true };
-    case 'GET_SUCCESS':
+    case GET_SUCCESS:
       return { ...state, product: payload, loading: false };
-    case 'GET_FAIL':
+    case GET_FAIL:
       return { ...state, loading: false, error: payload };
     default:
       return state;
@@ -48,19 +39,19 @@ function ProductPage() {
       return;
     }
 
-    ctxDispatch({ type: 'ADD_TO_CART', payload: { ...product, quantity } });
+    ctxDispatch({ type: ADD_TO_CART, payload: { ...product, quantity } });
     navigate("/cart");
   }
 
   useEffect(() => {
     const getProduct = async () => {
-      dispatch({ type: 'GET_REQUEST' });
+      dispatch({ type: GET_REQUEST });
 
       try {
         const res = await axios.get(`/api/v1/products/token/${token}`);
-        dispatch({ type: 'GET_SUCCESS', payload: res.data });
+        dispatch({ type: GET_SUCCESS, payload: res.data });
       } catch (err) {
-        dispatch({ type: 'GET_FAIL', payload: getError(err) });
+        dispatch({ type: GET_FAIL, payload: getError(err) });
       }
     };
 

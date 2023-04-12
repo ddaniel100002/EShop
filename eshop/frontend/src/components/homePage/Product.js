@@ -1,10 +1,4 @@
-import { Link } from 'react-router-dom';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import Rating from '../shared/Rating';
-import axios from 'axios';
-import { useContext } from 'react';
-import { Store } from '../../Store';
+import { Link, Card, Button, axios, Rating, useContext, Store } from '../../Imports';
 
 function Product({ product }) {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -23,10 +17,10 @@ function Product({ product }) {
         return;
       }
 
-      ctxDispatch({type: 'ADD_TO_CART', payload: { ...product, quantity }});
+      ctxDispatch({ type: 'ADD_TO_CART', payload: { ...product, quantity } });
 
     } catch (err) {
-      ctxDispatch({type: 'GET_FAIL',payload: err.message});
+      ctxDispatch({ type: 'GET_FAIL', payload: err.message });
     }
   }
 
