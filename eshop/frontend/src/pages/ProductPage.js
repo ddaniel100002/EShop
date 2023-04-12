@@ -8,6 +8,9 @@ import MessageBox from '../components/shared/MessageBox';
 import { getError } from '../Utils';
 import ProductDescription from '../components/productPage/ProductDescription';
 import CartDescription from '../components/productPage/CartDescription';
+import { Store } from "../Store";
+import { useContext } from 'react';
+import { useNavigate } from "react-router-dom";
 
 const reducer = (state, { type, payload }) => {
   switch (type) {
@@ -25,12 +28,29 @@ const reducer = (state, { type, payload }) => {
 function ProductPage() {
   const params = useParams();
   const { token } = params;
+  const navigate = useNavigate();
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { cart } = state;
 
   const [{ loading, error, product }, dispatch] = useReducer(reducer, {
     loading: true,
     error: '',
     product: [],
   });
+
+  const addToCartHandler = async () => {
+    const existedItem = cart.cartItems.find((x) => x._id === product._id);
+    const quantity = existedItem ? existedItem.quantity + 1 : 1;
+    const { data } = await axios.get(`/api/v1/products/${product._id}`);
+
+    if (data.countInStock < quantity) {
+      window.alert('Product is out of stock');
+      return;
+    }
+
+    ctxDispatch({ type: 'ADD_TO_CART', payload: { ...product, quantity } });
+    navigate("/cart");
+  }
 
   useEffect(() => {
     const getProduct = async () => {
@@ -45,7 +65,7 @@ function ProductPage() {
     };
 
     getProduct();
-  }, [token]); 
+  }, [token]);
 
   return (
     <div>
@@ -70,7 +90,7 @@ function ProductPage() {
                 </Col>
 
                 <Col md={3}>
-                  <CartDescription product={product}/>
+                  <CartDescription product={product} addToCartHandler={addToCartHandler} />
                 </Col>
               </Row>
             </div>
@@ -78,5 +98,4 @@ function ProductPage() {
     </div>
   );
 }
-
 export default ProductPage;

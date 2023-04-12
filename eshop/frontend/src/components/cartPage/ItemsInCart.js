@@ -4,31 +4,8 @@ import MessageBox from "../shared/MessageBox";
 import { Link } from "react-router-dom";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import axios from "axios";
 
-function ItemsInCart({ cartItems, dispatch: ctxDispatch }) {
-
-    const updateCartHandler = async (item, quantity) => {
-
-        const { data } = await axios.get(`/api/v1/products/${item._id}`);
-
-        if (data.countInStock < quantity) {
-            window.alert('Sorry. Product is out of stock');
-            return;
-        }
-        ctxDispatch({
-            type: 'ADD_TO_CART',
-            payload: { ...item, quantity },
-        });
-    }
-
-    const removeItemHandler = (item) => {
-        ctxDispatch({
-            type: 'REMOVE_FROM_CART',
-            payload: item,
-        })
-    }
-
+function ItemsInCart({ cartItems, updateCartHandler, removeItemHandler }) {
     return (
         <div>
             {cartItems.length === 0 ? (

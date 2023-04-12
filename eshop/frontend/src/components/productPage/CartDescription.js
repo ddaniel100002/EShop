@@ -4,32 +4,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Badge from "react-bootstrap/Badge";
 import Button from "react-bootstrap/Button";
-import { Store } from "../../Store";
-import { useContext } from 'react';
-import axios from 'axios';
-import { useNavigate } from "react-router-dom";
 
-function CartDescription({ product }) {
-
-    const navigate = useNavigate();
-    const { state, dispatch: ctxDispatch } = useContext(Store);
-    const { cart } = state;
-
-    const addToCartHandler = async () => {
-        const existedItem = cart.cartItems.find((x) => x._id === product._id);
-        const quantity = existedItem ? existedItem.quantity + 1 : 1;
-        const { data } = await axios.get(`/api/v1/products/${product._id}`);
-
-        if (data.countInStock < quantity) {
-            window.alert('Product is out of stock');
-            return;
-        }
-
-        ctxDispatch({ type: 'ADD_TO_CART', payload: { ...product, quantity } });
-
-        navigate("/cart");
-    }
-
+function CartDescription({ product, addToCartHandler }) {
     return (
         <Card>
             <Card.Body>
@@ -57,7 +33,7 @@ function CartDescription({ product }) {
                         <ListGroup.Item>
                             <div className='d-grid'>
                                 <Button
-                                    onClick={addToCartHandler}
+                                    onClick={() => addToCartHandler()}
                                     variant='primary'>
                                     Add to cart
                                 </Button>
