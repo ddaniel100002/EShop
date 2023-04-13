@@ -511,7 +511,7 @@ const data = {
     {
       name: "Admin",
       email: "admin@example.com",
-      password: "$2a$10$Q7aOlSP7ZiyN8omkn.ptFeyEDREoaJqMEwydSRREj0baE6Oqhx.oe",
+      password: bcrypt.hashSync("12345"),
       _id: "64379be3274e949864ae7779",
       __v: 0,
       createdAt: "2023-04-13T06:06:27.929Z",
