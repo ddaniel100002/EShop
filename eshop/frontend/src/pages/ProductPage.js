@@ -73,7 +73,7 @@ function ProductPage() {
             <div>
               <Row>
                 <Col md={6}>
-                  <img width={500} src={`${product.image}`} alt={product.title} />
+                  <img width={400} src={`${product.image}`} alt={product.title} />
                 </Col>
 
                 <Col md={3}>
