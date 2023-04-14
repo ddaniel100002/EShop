@@ -21,7 +21,7 @@ function ProductPage() {
   const { token } = params;
   const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
-  const { cart } = state;
+  const { cart: { cartItems } } = state;
 
   const [{ loading, error, product }, dispatch] = useReducer(reducer, {
     loading: true,
@@ -29,18 +29,24 @@ function ProductPage() {
     product: [],
   });
 
-  const addToCartHandler = async () => {
-    const existedItem = cart.cartItems.find((x) => x._id === product._id);
+  const addToCartHandler = async() => {
+    const existedItem = cartItems.find((x) => x._id === product._id);
     const quantity = existedItem ? existedItem.quantity + 1 : 1;
-    const { data } = await axios.get(`/api/v1/products/${product._id}`);
 
-    if (data.countInStock < quantity) {
-      window.alert('Product is out of stock');
-      return;
+    try {
+      const { data } = await axios.get(`/api/v1/products/${product._id}`);
+  
+      if (data.countInStock < quantity) {
+        window.alert('Product is out of stock');
+        return;
+      }
+  
+      ctxDispatch({ type: ADD_TO_CART, payload: { ...product, quantity } });
+
+      navigate("/cart");
+    } catch (err) {
+      ctxDispatch({ type: GET_FAIL, payload: err.message });
     }
-
-    ctxDispatch({ type: ADD_TO_CART, payload: { ...product, quantity } });
-    navigate("/cart");
   }
 
   useEffect(() => {

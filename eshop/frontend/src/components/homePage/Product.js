@@ -1,4 +1,4 @@
-import { Link, Card, Button, axios, Rating, useContext, Store } from '../../Imports';
+import { Link, Card, Button, axios, Rating, useContext, Store, ADD_TO_CART, GET_FAIL } from '../../Imports';
 
 function Product({ product }) {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -17,17 +17,21 @@ function Product({ product }) {
         return;
       }
 
-      ctxDispatch({ type: 'ADD_TO_CART', payload: { ...product, quantity } });
+      ctxDispatch({ type: ADD_TO_CART, payload: { ...product, quantity } });
 
     } catch (err) {
-      ctxDispatch({ type: 'GET_FAIL', payload: err.message });
+      ctxDispatch({ type: GET_FAIL, payload: err.message });
     }
-  }
+  };
+
+  const handleDragStart = (event) => {
+    event.dataTransfer.setData('text/plain', product._id);
+  };
 
   return (
-    <Card className="product-card">
+    <Card draggable="true" onDragStart={handleDragStart} className="product-card">
       <Link to={`/product/${product.token}`}>
-        <Card.Img variant="top" src={product.image} alt={product.title} />
+        <Card.Img variant='top' src={product.image} alt={product.title} />
       </Link>
       <Card.Body>
         <Link to={`/product/${product.token}`}>
