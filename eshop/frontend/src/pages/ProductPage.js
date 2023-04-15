@@ -20,6 +20,7 @@ function ProductPage() {
   const params = useParams();
   const { token } = params;
   const navigate = useNavigate();
+
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart: { cartItems } } = state;
 
@@ -29,8 +30,8 @@ function ProductPage() {
     product: [],
   });
 
-  const addToCart = async() => {
-    await addToCartHandler(product,cartItems,ctxDispatch);
+  const addToCart = async () => {
+    await addToCartHandler(product, cartItems, ctxDispatch);
     navigate('/cart');
   }
 
@@ -64,7 +65,7 @@ function ProductPage() {
             <div>
               <Row>
                 <Col md={6}>
-                  <img width={400} src={`${product.image}`} alt={product.title} />
+                  <img height={500} width={400} src={`${product.image}`} alt={product.title} />
                 </Col>
 
                 <Col md={3}>

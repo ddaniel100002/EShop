@@ -13,7 +13,7 @@ function Product({ product }) {
       <Link to={`/product/${product.token}`}>
         <Card.Img variant='top' src={product.image} alt={product.title} />
       </Link>
-      <Card.Body>
+      <Card.Body className='card-body'>
         <Link to={`/product/${product.token}`}>
           <Card.Title>{product.title}</Card.Title>
         </Link>

@@ -30,7 +30,6 @@ function SigninPage() {
 
         } catch (err) {
             alert(getError(err));
-            //toast.error(getError(err));
         }
     };
 

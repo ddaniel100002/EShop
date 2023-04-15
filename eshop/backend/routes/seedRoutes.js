@@ -2,7 +2,6 @@ import express from 'express';
 import Product from '../models/ProductModel.js';
 import data from '../data.js';
 import User from '../models/UserModel.js';
-import axios from 'axios';
 
 const seedRouter = express.Router();
 

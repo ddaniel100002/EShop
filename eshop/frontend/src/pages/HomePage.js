@@ -28,7 +28,7 @@ function HomePage() {
       dispatch({ type: GET_REQUEST });
 
       try {
-        const res = await axios.get('http://localhost:5000/api/v1/products');
+        const res = await axios.get('api/v1/products');
         dispatch({ type: GET_SUCCESS, payload: res.data });
       } catch (err) {
         dispatch({ type: GET_FAIL, payload: err.message });
