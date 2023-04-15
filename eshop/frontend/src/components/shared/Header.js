@@ -1,36 +1,25 @@
-import { Container, Link, Badge, LinkContainer, NavBar, axios, ADD_TO_CART, useContext, Store, GET_FAIL } from '../../Imports';
+import { Container, Link, Badge, LinkContainer, NavBar, axios, useContext, Store, addToCartHandler } from '../../Imports';
 
 function Header({ cart }) {
 
     const { state, dispatch: ctxDispatch } = useContext(Store);
     const { cart: { cartItems } } = state;
 
+    //Cancels out default behaviour when the mouse is on the cart-icon
     const handleDragOver = (event) => {
         event.preventDefault();
     };
 
+    //When item card is dragged to the icon, it add it to the cart (provided it is in-stock).
     const handleDrop = async (event) => {
         event.preventDefault();
+
+        //Gets the item-id from the dragged item.
         const productId = event.dataTransfer.getData('text/plain');
 
-        const existedItem = cartItems.find((x) => x._id === productId);
-        const quantity = existedItem ? existedItem.quantity + 1 : 1;
-
-    try {
-      const { data } = await axios.get(`/api/v1/products/${productId}`);
-
-      if (data.countInStock < quantity) {
-        window.alert('Sorry. Product is out of stock');
-        return;
-      }
-
-      ctxDispatch({ type: ADD_TO_CART, payload: { ...data, quantity } });
-
-    } catch (err) {
-      ctxDispatch({ type: GET_FAIL, payload: err.message });
-    }
-
-
+        const { data } = await axios.get(`/api/v1/products/${productId}`);
+        
+        await addToCartHandler(data,cartItems,ctxDispatch);
     };
 
     return (
@@ -41,7 +30,7 @@ function Header({ cart }) {
                         <LinkContainer to="/">
                             <NavBar.Brand>Eshop</NavBar.Brand>
                         </LinkContainer>
-                        <nav onDragOver={handleDragOver} onDrop={handleDrop}>
+                        <nav onDragOver={handleDragOver} onDrop={handleDrop} className='d-flex mx-auto align-items-center'>
                             <Link to='/cart' className='nav-link'>
                                 <i className='fas fa-shopping-cart text-white'></i>
                                 {cart.cartItems.length > 0 && (
@@ -51,6 +40,9 @@ function Header({ cart }) {
                                 )}
                             </Link>
                         </nav>
+                        <LinkContainer to="/signin">
+                            <NavBar.Brand>Sign In</NavBar.Brand>
+                        </LinkContainer>
                     </Container>
                 </NavBar>
             </header>

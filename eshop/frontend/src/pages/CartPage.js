@@ -1,5 +1,5 @@
 import {
-    useContext, Store, Col, Row, Title, Checkout, ItemsInCart, axios, ADD_TO_CART,
+    useContext, Store, Col, Row, Title, Checkout, ItemsInCart, axios, ADD_TO_CART, GET_FAIL,
     REMOVE_FROM_CART, useNavigate
 } from '../Imports'
 
@@ -13,16 +13,21 @@ function CartPage() {
     }
 
     const updateCartHandler = async (item, quantity) => {
-        const { data } = await axios.get(`/api/v1/products/${item._id}`);
-
-        if (data.countInStock < quantity) {
-            window.alert('Sorry. Product is out of stock');
-            return;
+        try {
+            const { data } = await axios.get(`/api/v1/products/${item._id}`);
+    
+            if (data.countInStock < quantity) {
+                window.alert('Sorry. Product is out of stock');
+                return;
+            }
+            ctxDispatch({
+                type: ADD_TO_CART,
+                payload: { ...item, quantity },
+            });
+            
+        } catch (err) {
+            ctxDispatch({ type: GET_FAIL, payload: err.message });
         }
-        ctxDispatch({
-            type: ADD_TO_CART,
-            payload: { ...item, quantity },
-        });
     }
 
     const removeItemHandler = (item) => {

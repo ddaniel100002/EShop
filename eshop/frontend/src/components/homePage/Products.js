@@ -1,5 +1,7 @@
 import { Row, Col, Product } from '../../Imports';
 
+//This component iterates over the products and returns the product Component with varying display properties depending on the screen size.
+
 function Products({ products }) {
     return (
         <Row>

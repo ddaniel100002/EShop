@@ -1,5 +1,7 @@
 import {ListGroup, Title, Rating} from '../../Imports';
 
+//Displays item-relevant information in the center-right side of the product-page.
+
 function ProductDescription({title, rating, price, description}) {
     return (
         <ListGroup>

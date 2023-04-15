@@ -1,5 +1,8 @@
 import { Card, ListGroup, Button } from '../../Imports';
 
+//Handles Checkout Box in the top-right side of the cart-page.
+//Main functionality: Counts of the items in the cart, displays the overall price and the ability to navigate to checkout.
+
 function Checkout({ cartItems, checkoutHandler }) {
     return (
         <Card>
@@ -7,8 +10,10 @@ function Checkout({ cartItems, checkoutHandler }) {
                 <ListGroup variant='flush'>
                     <ListGroup.Item>
                         <h3>
+                            {/* Counts the items the cart */}
                             Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}
                             {' '}
+                            {/* Calculates the price */}
                             Items) : ${cartItems.reduce((a, c) => a + c.price * c.quantity, 0).toFixed(2)}
                         </h3>
                     </ListGroup.Item>

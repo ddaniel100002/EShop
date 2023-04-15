@@ -1,5 +1,7 @@
 import { Card, ListGroup, Row, Col, Badge, Button } from '../../Imports';
 
+//Displays cart-relevent information in the top-right side of the product-page.
+
 function CartDescription({ product, addToCart }) {
     return (
         <Card>

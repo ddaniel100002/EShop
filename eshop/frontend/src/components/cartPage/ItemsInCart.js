@@ -1,14 +1,15 @@
 import { Row, Col, Link, MessageBox, Button, ListGroup } from '../../Imports';
 
+//Handles Items visibility and funcionality with regards to the cart in the center-left side of the cart-page.
+//Main functionality: Receives and displays cart-Items. User has the ability to remove (entirely as well)/add existing items from the cart.
+
 function ItemsInCart({ cartItems, updateCartHandler, removeItemHandler }) {
     return (
         <div>
             {cartItems.length === 0 ? (
                 <MessageBox>
                     Your cart is empty. {' '}
-                    <Link to='/'>
-                        Go back to Home Page
-                    </Link>
+                    <Link to='/'>Go back to Home Page</Link>
                 </MessageBox>
             ) : (
                 <ListGroup>
