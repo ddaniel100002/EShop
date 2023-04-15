@@ -1,6 +1,6 @@
 import { Card, ListGroup, Row, Col, Badge, Button } from '../../Imports';
 
-function CartDescription({ product, addToCartHandler }) {
+function CartDescription({ product, addToCart }) {
     return (
         <Card>
             <Card.Body>
@@ -28,7 +28,7 @@ function CartDescription({ product, addToCartHandler }) {
                         <ListGroup.Item>
                             <div className='d-grid'>
                                 <Button
-                                    onClick={() => addToCartHandler()}
+                                    onClick={() => addToCart()}
                                     variant='primary'>
                                     Add to cart
                                 </Button>

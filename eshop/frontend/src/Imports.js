@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom/client';
-import React,{ useEffect, useReducer, useContext, useState,createContext } from 'react';
+import React, { useEffect, useReducer, useContext, useState, createContext } from 'react';
 import axios from 'axios';
 import Loading from './components/shared/Loading';
 import MessageBox from './components/shared/MessageBox';
@@ -9,7 +9,7 @@ import { GET_SUCCESS, GET_FAIL, GET_REQUEST, ADD_TO_CART, USER_SIGNIN, REMOVE_FR
 import { useParams, useNavigate, useLocation, Link, BrowserRouter, Routes, Route } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { getError } from './Utils';
+import { getError, addToCartHandler } from './Utils';
 import ProductDescription from './components/productPage/ProductDescription';
 import CartDescription from './components/productPage/CartDescription';
 import { Store } from './Store';
@@ -46,5 +46,5 @@ export {
     useState, USER_SIGNIN, useLocation, Container, SignInForm, Checkout, ItemsInCart, REMOVE_FROM_CART, Card, Button,
     ListGroup, Link, Rating, Product, Badge, LinkContainer, NavBar, Spinner, Alert, Helmet, Form, Route, Routes,
     BrowserRouter, HomePage, ProductPage, CartPage, SigninPage, Footer, Header, React, ReactDOM, App, reportWebVitals,
-    HelmetProvider, StoreProvider, createContext
+    HelmetProvider, StoreProvider, createContext, addToCartHandler
 };

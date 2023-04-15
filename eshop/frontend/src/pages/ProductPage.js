@@ -1,6 +1,6 @@
 import {
   useParams, useEffect, useReducer, axios, Row, Col, Loading, MessageBox, getError, ProductDescription, CartDescription,
-  Store, useContext, useNavigate, GET_REQUEST, GET_FAIL, GET_SUCCESS, ADD_TO_CART
+  Store, useContext, useNavigate, GET_REQUEST, GET_FAIL, GET_SUCCESS, addToCartHandler
 } from '../Imports'
 
 const reducer = (state, { type, payload }) => {
@@ -29,24 +29,9 @@ function ProductPage() {
     product: [],
   });
 
-  const addToCartHandler = async() => {
-    const existedItem = cartItems.find((x) => x._id === product._id);
-    const quantity = existedItem ? existedItem.quantity + 1 : 1;
-
-    try {
-      const { data } = await axios.get(`/api/v1/products/${product._id}`);
-  
-      if (data.countInStock < quantity) {
-        window.alert('Product is out of stock');
-        return;
-      }
-  
-      ctxDispatch({ type: ADD_TO_CART, payload: { ...product, quantity } });
-
-      navigate("/cart");
-    } catch (err) {
-      ctxDispatch({ type: GET_FAIL, payload: err.message });
-    }
+  const addToCart = async() => {
+    await addToCartHandler(product,cartItems,ctxDispatch);
+    navigate('/cart');
   }
 
   useEffect(() => {
@@ -87,7 +72,7 @@ function ProductPage() {
                 </Col>
 
                 <Col md={3}>
-                  <CartDescription product={product} addToCartHandler={addToCartHandler} />
+                  <CartDescription product={product} addToCart={addToCart} />
                 </Col>
               </Row>
             </div>
