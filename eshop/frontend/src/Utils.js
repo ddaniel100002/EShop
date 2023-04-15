@@ -1,4 +1,4 @@
-import {ADD_TO_CART, GET_FAIL, axios } from './Imports';
+import { ADD_TO_CART, GET_FAIL, axios } from './Imports';
 
 export const getError = (error) => {
     return (
@@ -8,6 +8,7 @@ export const getError = (error) => {
 };
 
 export const addToCartHandler = async (product, cartItems, ctxDispatch) => {
+    
     const existedItem = cartItems.find((x) => x._id === product._id);
     const quantity = existedItem ? existedItem.quantity + 1 : 1;
 
@@ -15,7 +16,7 @@ export const addToCartHandler = async (product, cartItems, ctxDispatch) => {
         const { data } = await axios.get(`/api/v1/products/${product._id}`);
 
         if (data.countInStock < quantity) {
-            window.alert('Product is out of stock');
+            window.alert('Sorry, Product is out of stock');
             return;
         }
 
