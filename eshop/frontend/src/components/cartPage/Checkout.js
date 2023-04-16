@@ -13,7 +13,7 @@ function Checkout({ cartItems, checkoutHandler }) {
                             {/* Counts the items the cart */}
                             Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}
                             {' '}
-                            {/* Calculates the price */}
+                            {/* Calculates the overall price */}
                             Items) : ${cartItems.reduce((a, c) => a + c.price * c.quantity, 0).toFixed(2)}
                         </h3>
                     </ListGroup.Item>
