@@ -1,4 +1,4 @@
-import { Container, Link, Badge, LinkContainer, NavBar, axios, useContext, Store, addToCartHandler,NavDropdown, USER_SIGNOUT } from '../../Imports';
+import { Container, Link, Badge, LinkContainer, NavBar, axios, useContext, Store, addToCartHandler, NavDropdown, USER_SIGNOUT } from '../../Imports';
 
 function Header({ cart }) {
 
@@ -19,13 +19,15 @@ function Header({ cart }) {
         const productId = event.dataTransfer.getData('text/plain');
 
         const { data } = await axios.get(`/api/v1/products/${productId}`);
-        
-        await addToCartHandler(data,cartItems,ctxDispatch);
+
+        await addToCartHandler(data, cartItems, ctxDispatch);
     };
 
     const signoutHandler = () => {
-        ctxDispatch({type: USER_SIGNOUT});
+        ctxDispatch({ type: USER_SIGNOUT });
         localStorage.removeItem('userInfo');
+        localStorage.removeItem('shippingAddress');
+        localStorage.removeItem('paymentMethod');
     };
 
     return (
@@ -47,23 +49,23 @@ function Header({ cart }) {
                             </Link>
                         </nav>
                         {userInfo ? (
-                                <NavDropdown className='text-white' title={userInfo.name} id='basic-nav-dropdown'>
-                                    <LinkContainer to='/profile'>
-                                            <NavDropdown.Item>
-                                                User Profile
-                                            </NavDropdown.Item>
-                                    </LinkContainer>
-                                    <LinkContainer to='/orderhistory'>
-                                            <NavDropdown.Item>
-                                                Order History
-                                            </NavDropdown.Item>
-                                    </LinkContainer>
-                                    <NavDropdown.Divider />
-                                    <Link onClick={signoutHandler} to='#signout' className='dropdown-item'>Sign Out</Link>
-                                </NavDropdown>
-                            ) : (
-                                <Link className='nav-link text-white' to='/signin'>Sign In</Link>
-                            )}
+                            <NavDropdown className='text-white' title={userInfo.name} id='basic-nav-dropdown'>
+                                <LinkContainer to='/profile'>
+                                    <NavDropdown.Item>
+                                        User Profile
+                                    </NavDropdown.Item>
+                                </LinkContainer>
+                                <LinkContainer to='/orderhistory'>
+                                    <NavDropdown.Item>
+                                        Order History
+                                    </NavDropdown.Item>
+                                </LinkContainer>
+                                <NavDropdown.Divider />
+                                <Link onClick={signoutHandler} to='#signout' className='dropdown-item'>Sign Out</Link>
+                            </NavDropdown>
+                        ) : (
+                            <Link className='nav-link text-white' to='/signin'>Sign In</Link>
+                        )}
                     </Container>
                 </NavBar>
             </header>

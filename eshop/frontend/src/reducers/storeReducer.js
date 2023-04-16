@@ -11,7 +11,6 @@ export const storeReducer = (state, { type, payload }) => {
 
             localStorage.setItem('cartItems', JSON.stringify(cartItems));
             return { ...state, cart: { ...state.cart, cartItems } };
-
         case REMOVE_FROM_CART:
             {
                 const cartItems = state.cart.cartItems.filter((item) => item._id !== payload._id
@@ -19,15 +18,22 @@ export const storeReducer = (state, { type, payload }) => {
                 localStorage.setItem('cartItems', JSON.stringify(cartItems));
                 return { ...state, cart: { ...state.cart, cartItems } }
             }
-
         case USER_SIGNIN:
             {
                 return { ...state, userInfo: payload };
             }
         case USER_SIGNOUT:
             {
-                return { ...state, userInfo: null };
+                return { ...state, userInfo: null, cart: { cartItems: [], shippingAddress: {}, paymentMethod: '' } };
             }
+        case 'SAVE_SHIPPING_ADDRESS':
+            {
+                return { ...state, cart: { ...state.cart, shippingAddress: payload } };
+            }
+        case 'SAVE_PAYMENT_METHOD':
+            {
+                return { ...state, cart: { ...state.cart, paymentMethod: payload } };
+            }    
 
         default:
             return state
