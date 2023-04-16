@@ -5,7 +5,7 @@ import Loading from './components/shared/Loading';
 import MessageBox from './components/shared/MessageBox';
 import Title from './components/shared/Title';
 import Products from './components/homePage/Products';
-import { GET_SUCCESS, GET_FAIL, GET_REQUEST, ADD_TO_CART, USER_SIGNIN, REMOVE_FROM_CART } from './Actions';
+import { GET_SUCCESS, GET_FAIL, GET_REQUEST, ADD_TO_CART, USER_SIGNIN, REMOVE_FROM_CART, USER_SIGNOUT } from './Actions';
 import { useParams, useNavigate, useLocation, Link, BrowserRouter, Routes, Route } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -39,6 +39,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { HelmetProvider } from 'react-helmet-async';
 import { StoreProvider } from './Store';
+import { homePageReducer } from './reducers/homePageReducer';
+import { productPageReducer } from './reducers/productPageReducer'
+import { storeReducer } from './reducers/storeReducer';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 export {
     useEffect, useReducer, axios, Loading, MessageBox, Title, Products, GET_SUCCESS, GET_FAIL, GET_REQUEST,
@@ -46,5 +50,5 @@ export {
     useState, USER_SIGNIN, useLocation, Container, SignInForm, Checkout, ItemsInCart, REMOVE_FROM_CART, Card, Button,
     ListGroup, Link, Rating, Product, Badge, LinkContainer, NavBar, Spinner, Alert, Helmet, Form, Route, Routes,
     BrowserRouter, HomePage, ProductPage, CartPage, SigninPage, Footer, Header, React, ReactDOM, App, reportWebVitals,
-    HelmetProvider, StoreProvider, createContext, addToCartHandler
+    HelmetProvider, StoreProvider, createContext, addToCartHandler, homePageReducer, productPageReducer, storeReducer, NavDropdown, USER_SIGNOUT
 };

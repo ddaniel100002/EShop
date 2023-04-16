@@ -1,27 +1,16 @@
 import {
   useEffect, useReducer, axios, Loading, MessageBox, Title, Products,
-  GET_SUCCESS, GET_FAIL, GET_REQUEST
+  GET_SUCCESS, GET_FAIL, GET_REQUEST, homePageReducer
 } from '../Imports'
 
-const reducer = (state, { type, payload }) => {
-  switch (type) {
-    case GET_REQUEST:
-      return { ...state, loading: true };
-    case GET_SUCCESS:
-      return { ...state, products: payload, loading: false };
-    case GET_FAIL:
-      return { ...state, loading: false, error: payload };
-    default:
-      return state;
-  }
+const initialState = {
+  loading: true,
+  error: '',
+  products: [],
 };
 
 function HomePage() {
-  const [{ loading, error, products }, dispatch] = useReducer(reducer, {
-    loading: true,
-    error: '',
-    products: [],
-  });
+  const [{ loading, error, products }, dispatch] = useReducer(homePageReducer, initialState);
 
   useEffect(() => {
     const getProducts = async () => {

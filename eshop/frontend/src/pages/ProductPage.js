@@ -1,20 +1,7 @@
 import {
   useParams, useEffect, useReducer, axios, Row, Col, Loading, MessageBox, getError, ProductDescription, CartDescription,
-  Store, useContext, useNavigate, GET_REQUEST, GET_FAIL, GET_SUCCESS, addToCartHandler
+  Store, useContext, useNavigate, GET_REQUEST, GET_FAIL, GET_SUCCESS, addToCartHandler, productPageReducer
 } from '../Imports'
-
-const reducer = (state, { type, payload }) => {
-  switch (type) {
-    case GET_REQUEST:
-      return { ...state, loading: true };
-    case GET_SUCCESS:
-      return { ...state, product: payload, loading: false };
-    case GET_FAIL:
-      return { ...state, loading: false, error: payload };
-    default:
-      return state;
-  }
-};
 
 function ProductPage() {
   const params = useParams();
@@ -24,11 +11,13 @@ function ProductPage() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart: { cartItems } } = state;
 
-  const [{ loading, error, product }, dispatch] = useReducer(reducer, {
+  const initialState = {
     loading: true,
     error: '',
-    product: [],
-  });
+    products: [],
+  };
+
+  const [{ loading, error, product }, dispatch] = useReducer(productPageReducer, initialState);
 
   const addToCart = async () => {
     await addToCartHandler(product, cartItems, ctxDispatch);

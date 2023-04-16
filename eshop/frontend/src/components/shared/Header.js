@@ -1,9 +1,9 @@
-import { Container, Link, Badge, LinkContainer, NavBar, axios, useContext, Store, addToCartHandler } from '../../Imports';
+import { Container, Link, Badge, LinkContainer, NavBar, axios, useContext, Store, addToCartHandler,NavDropdown, USER_SIGNOUT } from '../../Imports';
 
 function Header({ cart }) {
 
     const { state, dispatch: ctxDispatch } = useContext(Store);
-    const { cart: { cartItems } } = state;
+    const { cart: { cartItems }, userInfo } = state;
 
     //Cancels out default behaviour when the mouse is on the cart-icon
     const handleDragOver = (event) => {
@@ -14,12 +14,18 @@ function Header({ cart }) {
     const handleDrop = async (event) => {
         event.preventDefault();
 
+
         //Gets the item-id from the dragged item.
         const productId = event.dataTransfer.getData('text/plain');
 
         const { data } = await axios.get(`/api/v1/products/${productId}`);
         
         await addToCartHandler(data,cartItems,ctxDispatch);
+    };
+
+    const signoutHandler = () => {
+        ctxDispatch({type: USER_SIGNOUT});
+        localStorage.removeItem('userInfo');
     };
 
     return (
@@ -40,9 +46,24 @@ function Header({ cart }) {
                                 )}
                             </Link>
                         </nav>
-                        <LinkContainer to="/signin">
-                            <NavBar.Brand>Sign In</NavBar.Brand>
-                        </LinkContainer>
+                        {userInfo ? (
+                                <NavDropdown className='text-white' title={userInfo.name} id='basic-nav-dropdown'>
+                                    <LinkContainer to='/profile'>
+                                            <NavDropdown.Item>
+                                                User Profile
+                                            </NavDropdown.Item>
+                                    </LinkContainer>
+                                    <LinkContainer to='/orderhistory'>
+                                            <NavDropdown.Item>
+                                                Order History
+                                            </NavDropdown.Item>
+                                    </LinkContainer>
+                                    <NavDropdown.Divider />
+                                    <Link onClick={signoutHandler} to='#signout' className='dropdown-item'>Sign Out</Link>
+                                </NavDropdown>
+                            ) : (
+                                <Link className='nav-link text-white' to='/signin'>Sign In</Link>
+                            )}
                     </Container>
                 </NavBar>
             </header>

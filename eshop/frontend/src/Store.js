@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, useReducer, createContext } from './Imports';
+import { useReducer, createContext, storeReducer } from './Imports';
 
 export const Store = createContext();
 
@@ -8,36 +8,12 @@ const initialState = {
             JSON.parse(localStorage.getItem('cartItems'))
             :
             []
-    }
-}
-
-const reducer = (state, { type, payload }) => {
-    switch (type) {
-        case ADD_TO_CART:
-            const newItem = payload;
-            const existingItem = state.cart.cartItems.find((item) => item._id === newItem._id);
-            const cartItems = existingItem ? state.cart.cartItems.map((item) => item._id === existingItem._id ? newItem : item)
-                :
-                [...state.cart.cartItems, newItem];
-
-            localStorage.setItem('cartItems', JSON.stringify(cartItems));
-            return { ...state, cart: { ...state.cart, cartItems } };
-
-        case REMOVE_FROM_CART:
-            {
-                const cartItems = state.cart.cartItems.filter((item) => item._id !== payload._id
-                );
-                localStorage.setItem('cartItems', JSON.stringify(cartItems));
-                return { ...state, cart: { ...state.cart, cartItems } }
-            }
-
-        default:
-            return state
-    }
-}
+    },
+    userInfo: localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
+};
 
 export function StoreProvider(props) {
-    const [state, dispatch] = useReducer(reducer, initialState);
+    const [state, dispatch] = useReducer(storeReducer, initialState);
     const body = { state, dispatch };
 
     return <Store.Provider value={body}>
