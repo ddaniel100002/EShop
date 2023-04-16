@@ -11,10 +11,10 @@ const initialState = {
     }
 }
 
-const reducer = (state, action) => {
-    switch (action.type) {
+const reducer = (state, { type, payload }) => {
+    switch (type) {
         case ADD_TO_CART:
-            const newItem = action.payload;
+            const newItem = payload;
             const existingItem = state.cart.cartItems.find((item) => item._id === newItem._id);
             const cartItems = existingItem ? state.cart.cartItems.map((item) => item._id === existingItem._id ? newItem : item)
                 :
@@ -25,7 +25,7 @@ const reducer = (state, action) => {
 
         case REMOVE_FROM_CART:
             {
-                const cartItems = state.cart.cartItems.filter((item) => item._id !== action.payload._id
+                const cartItems = state.cart.cartItems.filter((item) => item._id !== payload._id
                 );
                 localStorage.setItem('cartItems', JSON.stringify(cartItems));
                 return { ...state, cart: { ...state.cart, cartItems } }
