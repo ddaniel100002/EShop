@@ -1,3 +1,4 @@
+import { SAVE_SHIPPING_ADDRESS } from "../Actions";
 import { Title, Form, useState, Button, useContext, Store, useNavigate, useEffect } from "../Imports";
 import CheckoutSteps from "../components/shared/CheckoutSteps";
 
@@ -23,7 +24,7 @@ const ShippingAddressPage = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     ctxDispatch({
-      type: 'SAVE_SHIPPING_ADDRESS',
+      type: SAVE_SHIPPING_ADDRESS,
       payload: {
         fullName,
         address,

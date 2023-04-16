@@ -1,3 +1,4 @@
+import { SAVE_PAYMENT_METHOD } from "../Actions";
 import { Button, Form, Store, Title, useContext, useEffect, useNavigate, useState } from "../Imports";
 import CheckoutSteps from "../components/shared/CheckoutSteps";
 
@@ -11,7 +12,7 @@ const PaymentPage = () => {
     const submitHandler = (e) => {
         e.preventDefault();
 
-        ctxDispatch({type: 'SAVE_PAYMENT_METHOD', payload: paymentMethodName});
+        ctxDispatch({type: SAVE_PAYMENT_METHOD, payload: paymentMethodName});
         localStorage.setItem('paymentMethod', paymentMethodName);
         navigate('/placeorder');
     }

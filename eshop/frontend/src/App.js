@@ -1,13 +1,10 @@
 import './App.css';
 import {
   BrowserRouter, Routes, Route, HomePage, ProductPage, Container, useContext, Store, CartPage,
-  SigninPage, Header, Footer
+  SigninPage, Header, Footer,ToastContainer, SignupPage, PaymentPage, ShippingAddressPage
 } from './Imports';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import ShippingAddressPage from './pages/ShippingAddressPage';
-import SignupPage from './pages/SignupPage';
-import PaymentPage from './pages/PaymentPage';
+
 
 function App() {
   const { state } = useContext(Store);

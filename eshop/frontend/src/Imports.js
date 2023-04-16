@@ -43,6 +43,10 @@ import { homePageReducer } from './reducers/homePageReducer';
 import { productPageReducer } from './reducers/productPageReducer'
 import { storeReducer } from './reducers/storeReducer';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import ShippingAddressPage from './pages/ShippingAddressPage';
+import SignupPage from './pages/SignupPage';
+import PaymentPage from './pages/PaymentPage';
+import { ToastContainer } from 'react-toastify';
 
 export {
     useEffect, useReducer, axios, Loading, MessageBox, Title, Products, GET_SUCCESS, GET_FAIL, GET_REQUEST,
@@ -50,5 +54,5 @@ export {
     useState, USER_SIGNIN, useLocation, Container, SignInForm, Checkout, ItemsInCart, REMOVE_FROM_CART, Card, Button,
     ListGroup, Link, Rating, Product, Badge, LinkContainer, NavBar, Spinner, Alert, Helmet, Form, Route, Routes,
     BrowserRouter, HomePage, ProductPage, CartPage, SigninPage, Footer, Header, React, ReactDOM, App, reportWebVitals,
-    HelmetProvider, StoreProvider, createContext, addToCartHandler, homePageReducer, productPageReducer, storeReducer, NavDropdown, USER_SIGNOUT
+    HelmetProvider, StoreProvider, createContext, addToCartHandler, homePageReducer, productPageReducer, storeReducer, NavDropdown, USER_SIGNOUT, ShippingAddressPage, SignupPage, PaymentPage, ToastContainer
 };
