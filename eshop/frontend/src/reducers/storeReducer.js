@@ -18,6 +18,10 @@ export const storeReducer = (state, { type, payload }) => {
                 localStorage.setItem('cartItems', JSON.stringify(cartItems));
                 return { ...state, cart: { ...state.cart, cartItems } }
             }
+        case "CLEAR_CART": 
+        {
+            return {...state, cart: {...state.cart, cartItems: []}};
+        }    
         case USER_SIGNIN:
             {
                 return { ...state, userInfo: payload };

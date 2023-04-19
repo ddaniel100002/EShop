@@ -4,6 +4,8 @@ import {
   SigninPage, Header, Footer,ToastContainer, SignupPage, PaymentPage, ShippingAddressPage
 } from './Imports';
 import 'react-toastify/dist/ReactToastify.css';
+import SubmitOrderPage from './pages/SubmitOrderPage';
+import OrderPage from './pages/OrderPage';
 
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
               <Route path="/signin" element={<SigninPage />} />
               <Route path="/signup" element={<SignupPage />} />
               <Route path='/payment' element={<PaymentPage />}/>
+              <Route path='/placeorder' element={<SubmitOrderPage />}/>
+              <Route path='/order/:id' element={<OrderPage />}/>
               <Route path="/shipping" element={<ShippingAddressPage />} />
             </Routes>
           </Container>

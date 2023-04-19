@@ -28,7 +28,9 @@ function Product({ product }) {
 
         {/* if the product is NOT in stock, a 'Out of Stock' button will appear instead of the usual 'Add to Cart' button*/}
         {product.countInStock === 0 ?
-          <Button variant='light' disabled>Out of Stock</Button> : <Button onClick={() => addToCartHandler(product, cartItems, ctxDispatch)} className="btn-primary">Add to Cart</Button>
+          <Button variant='light' disabled>Out of Stock</Button>
+          :
+          <Button onClick={() => addToCartHandler(product, cartItems, ctxDispatch)} className="btn-primary">Add to Cart</Button>
         }
       </Card.Body>
     </Card>
