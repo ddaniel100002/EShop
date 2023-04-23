@@ -1,4 +1,4 @@
-import { GET_FAIL, GET_REQUEST, GET_SUCCESS } from "../Actions";
+import { GET_FAIL, GET_REQUEST, GET_SUCCESS } from "../Imports";
 
 export const homePageReducer = (state, { type, payload }) => {
     switch (type) {

@@ -1,9 +1,9 @@
 import { Helmet } from "../../Imports";
 
-function Title({title}) {
+function Title({ title }) {
   return (
     <Helmet>
-        <title>{title}</title>
+      <title>{title}</title>
     </Helmet>
   )
 }

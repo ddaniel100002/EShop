@@ -1,6 +1,4 @@
-import { SAVE_PAYMENT_METHOD } from "../Actions";
-import { Button, Form, Store, Title, useContext, useEffect, useNavigate, useState } from "../Imports";
-import CheckoutSteps from "../components/shared/CheckoutSteps";
+import { Button, Form, Store, Title, useContext, useEffect, useNavigate, useState, SAVE_PAYMENT_METHOD, CheckoutSteps } from "../Imports";
 
 const PaymentPage = () => {
 

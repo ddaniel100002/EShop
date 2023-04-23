@@ -1,14 +1,15 @@
-import { toast } from "react-toastify";
-import { Button, Card, Col, Link, ListGroup, Loading, Row, Store, Title, axios, getError, useContext, useEffect, useNavigate, useReducer } from "../Imports";
-import CheckoutSteps from "../components/shared/CheckoutSteps";
+import {
+    Button, Card, Col, Link, ListGroup, Loading, Row, Store, Title, axios, useContext, useEffect, useNavigate, useReducer,
+    CREATE_FAILED, CREATE_REQUEST, CREATE_SUCCEEDED, CheckoutSteps, CLEAR_CART, toast
+} from "../Imports";
 
-const reducer = (state, { type, payload }) => {
+const reducer = (state, { type }) => {
     switch (type) {
-        case "CREATE_REQUEST":
+        case CREATE_REQUEST:
             return { ...state, loading: true }
-        case "CREATE_SUCCEEDED":
+        case CREATE_SUCCEEDED:
             return { ...state, loading: false }
-        case "CREATE_FAILED":
+        case CREATE_FAILED:
             return { ...state, loading: false }
 
         default:
@@ -22,8 +23,6 @@ const SubmitOrderPage = () => {
 
     const [{ loading }, dispatch] = useReducer(reducer, { loading: false });
 
-
-
     const { state, dispatch: ctxDispatch } = useContext(Store);
     const { cart, userInfo } = state;
     const { paymentMethod } = cart;
@@ -31,7 +30,7 @@ const SubmitOrderPage = () => {
 
     const submitOrderHandler = async () => {
         try {
-            dispatch({ type: "CREATE_REQUEST" });
+            dispatch({ type: CREATE_REQUEST });
 
             const { data } = await axios.post("/api/v1/orders", {
                 orderItems: cart.cartItems,
@@ -45,19 +44,17 @@ const SubmitOrderPage = () => {
                 headers: { authorization: `Bearer ${userInfo.token}` }
             })
 
-            dispatch({ type: "CREATE_SUCCEEDED" });
+            dispatch({ type: CREATE_SUCCEEDED });
 
-            ctxDispatch({ type: "CLEAR_CART" });
+            ctxDispatch({ type: CLEAR_CART });
 
-            localStorage.removeItem("cartItems");
+            localStorage.removeItem('cartItems');
 
             navigate(`/order/${data.order._id}`);
 
         } catch (err) {
-            dispatch({ type: "CREATE_FAILED" });
-            alert(err.message);
-            //TODO: FIX THIS.
-            //toast.error(getError(err));
+            dispatch({ type: CREATE_FAILED });
+            toast.error(err.message);
         }
     }
 

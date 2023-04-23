@@ -1,6 +1,4 @@
-import { SAVE_SHIPPING_ADDRESS } from "../Actions";
-import { Title, Form, useState, Button, useContext, Store, useNavigate, useEffect } from "../Imports";
-import CheckoutSteps from "../components/shared/CheckoutSteps";
+import { Title, Form, useState, Button, useContext, Store, useNavigate, useEffect, CheckoutSteps, SAVE_SHIPPING_ADDRESS } from "../Imports";
 
 
 const ShippingAddressPage = () => {
