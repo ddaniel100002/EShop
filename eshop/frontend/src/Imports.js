@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom/client';
-import React, { useEffect, useReducer, useContext, useState, createContext } from 'react';
+import React, { useEffect, useReducer, useContext, useState, createContext, Fragment } from 'react';
 import axios from 'axios';
 import Loading from './components/shared/Loading';
 import MessageBox from './components/shared/MessageBox';
@@ -59,5 +59,5 @@ export {
     useState, USER_SIGNIN, useLocation, Container, SignInForm, Checkout, ItemsInCart, REMOVE_FROM_CART, Card, Button,
     ListGroup, Link, Rating, Product, Badge, LinkContainer, NavBar, Spinner, Alert, Helmet, Form, Route, Routes,
     BrowserRouter, HomePage, ProductPage, CartPage, SigninPage, Footer, Header, React, ReactDOM, App, reportWebVitals,
-    HelmetProvider, StoreProvider, createContext, addToCartHandler, homePageReducer, productPageReducer, storeReducer, NavDropdown, USER_SIGNOUT, ShippingAddressPage, SignupPage, PaymentPage, ToastContainer, CheckoutSteps, SAVE_PAYMENT_METHOD, CREATE_FAILED, CREATE_REQUEST, CREATE_SUCCEEDED, CLEAR_CART, toast, SAVE_SHIPPING_ADDRESS
+    HelmetProvider, StoreProvider, createContext, addToCartHandler, homePageReducer, productPageReducer, storeReducer, NavDropdown, USER_SIGNOUT, ShippingAddressPage, SignupPage, PaymentPage, ToastContainer, CheckoutSteps, SAVE_PAYMENT_METHOD, CREATE_FAILED, CREATE_REQUEST, CREATE_SUCCEEDED, CLEAR_CART, toast, SAVE_SHIPPING_ADDRESS, Fragment
 };

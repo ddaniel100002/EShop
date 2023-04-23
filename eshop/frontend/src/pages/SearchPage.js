@@ -1,10 +1,7 @@
-import { Fragment, useEffect, useReducer, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { GET_FAIL, GET_REQUEST, GET_SUCCESS } from "../Actions";
-import { getError } from "../Utils";
-import axios from "axios";
-import { toast } from "react-toastify";
-import { Button, Col, LinkContainer, Loading, MessageBox, Product, Rating, Row, Title } from "../Imports";
+import {
+    Button, Col, LinkContainer, Loading, MessageBox, Product, Rating, Row, Title, toast, axios,
+    getError, GET_FAIL, GET_REQUEST, GET_SUCCESS, Link, useLocation, useNavigate, useEffect, useState, useReducer, Fragment
+} from "../Imports";
 
 const reducer = (state, { type, payload }) => {
     switch (type) {
@@ -110,7 +107,7 @@ const SearchPage = () => {
 
                 const { data } = await axios.get(`/api/v1/products/search?page=${page}&query=${query}&category=${category}&price=${price}&rating=${rating}&order=${order}`);
                 dispatch({ type: GET_SUCCESS, payload: data })
-                
+
 
             } catch (err) {
                 dispatch({ type: GET_FAIL, payload: getError(err) })
