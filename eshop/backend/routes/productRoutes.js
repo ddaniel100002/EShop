@@ -18,7 +18,6 @@ productRouter.get('/categories', expressAsyncHandler(async (req, res) => {
 
 productRouter.get('/search', expressAsyncHandler(async (req, res) => {
   const { query } = req;
-  console.log(query);
   const pageSize = query.pageSize || PAGE_SIZE;
   const page = query.page || 1;
   const category = query.category || '';
@@ -65,7 +64,6 @@ productRouter.get('/search', expressAsyncHandler(async (req, res) => {
               ? { createdAt: -1 }
               : { _id: -1 };
 
-  console.log(ratingFilter);
 
   const products = await Product.find({
     ...queryFilter,

@@ -110,6 +110,7 @@ const SearchPage = () => {
 
                 const { data } = await axios.get(`/api/v1/products/search?page=${page}&query=${query}&category=${category}&price=${price}&rating=${rating}&order=${order}`);
                 dispatch({ type: GET_SUCCESS, payload: data })
+                
 
             } catch (err) {
                 dispatch({ type: GET_FAIL, payload: getError(err) })
@@ -253,7 +254,7 @@ const SearchPage = () => {
                                         }}
                                     >
                                         <Button
-                                            className={Number(page) === x + 1 ? 'text-bold' : ''}
+                                            className={Number(page) === x + 1 ? 'highlight-current-page' : ''}
                                             variant="light"
                                         >
                                             {x + 1}
