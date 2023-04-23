@@ -6,6 +6,7 @@ import {
 import 'react-toastify/dist/ReactToastify.css';
 import SubmitOrderPage from './pages/SubmitOrderPage';
 import OrderPage from './pages/OrderPage';
+import SearchPage from './pages/SearchPage';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
               <Route path="/signup" element={<SignupPage />} />
               <Route path='/payment' element={<PaymentPage />}/>
               <Route path='/placeorder' element={<SubmitOrderPage />}/>
+              <Route path='/search' element={<SearchPage />}/>
               <Route path='/order/:id' element={<OrderPage />}/>
               <Route path="/shipping" element={<ShippingAddressPage />} />
             </Routes>

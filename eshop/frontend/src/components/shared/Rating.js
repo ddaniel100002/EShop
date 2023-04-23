@@ -1,4 +1,4 @@
-function Rating({ rating, numReviews }) {
+function Rating({ rating, numReviews, caption }) {
 
   return (
     <div className="rating">
@@ -57,7 +57,11 @@ function Rating({ rating, numReviews }) {
           }
         ></i>
       </span>
-      <span>{numReviews} Reviews</span>
+      {caption ? (
+        <span>{caption}</span>
+      ) : (
+        <span>{' ' + numReviews + ' reviews'}</span>
+      )}
     </div>
   );
 }

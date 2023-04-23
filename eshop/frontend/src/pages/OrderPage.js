@@ -21,7 +21,7 @@ const OrderPage = () => {
     const { id: orderId } = params;
     const naviagte = useNavigate();
 
-    const [{ loading, error, order }, dispatch] = useReducer(reducer, { loading: true, order: {}, error: '' });
+    const [{ loading, error, order }, dispatch] = useReducer(reducer, { loading: true, order: null, error: '' });
 
     useEffect(() => {
         const getOrder = async () => {
@@ -35,13 +35,12 @@ const OrderPage = () => {
             }
         };
         if (!userInfo) {
-            naviagte('/login');
+            naviagte('/signin');
         }
-        // if (!order || (order._id && orderId !== order._id)) {
-        //     getOrder();
-        // }
-        getOrder();
-    }, [naviagte, orderId, userInfo]);
+        if (!order || (order._id && orderId !== order._id)) {
+            getOrder();
+        }
+    }, [naviagte, order, orderId, userInfo]);
 
     return loading ? <Loading />
         :

@@ -2,6 +2,7 @@ import {
     Container, Link, Badge, LinkContainer, NavBar, axios, useContext, Store, addToCartHandler, NavDropdown, USER_SIGNOUT
     , useLocation, useNavigate
 } from '../../Imports';
+import SearchBox from '../SearchBox';
 
 function Header({ cart }) {
 
@@ -46,6 +47,8 @@ function Header({ cart }) {
                         <LinkContainer to="/">
                             <NavBar.Brand>Eshop</NavBar.Brand>
                         </LinkContainer>
+                        {' '}
+                        <SearchBox />
                         <nav onDragOver={handleDragOver} onDrop={handleDrop} className='d-flex mx-auto align-items-center'>
                             <Link to='/cart' className='nav-link'>
                                 <i className='fas fa-shopping-cart text-white'></i>

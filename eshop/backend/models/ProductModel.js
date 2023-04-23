@@ -12,7 +12,7 @@ const productSchema = mongoose.Schema(
         brand: { type: String, required: true },
         rating: {
             rate: { type: Number },
-            count: { type: Number }
+            count: { type: Number },
         },
     },
     { timestamps: true }
