@@ -37,8 +37,7 @@ productRouter.get('/search', expressAsyncHandler(async (req, res) => {
       }
       : {};
 
-  //Cast to Number failed for value "NaN" (type number) at path "price" for model "Product"
-
+      
   const categoryFilter = category && category !== 'all' ? { category } : {};
   const ratingFilter = rating && rating !== 'all' ? { 'rating.rate': { $gte: Number(rating) } } : {};
   const priceFilter =
