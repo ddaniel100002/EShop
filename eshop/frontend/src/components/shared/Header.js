@@ -2,7 +2,7 @@ import {
     Container, Link, Badge, LinkContainer, NavBar, axios, useContext, Store, addToCartHandler, NavDropdown, USER_SIGNOUT
     , useLocation, useNavigate
 } from '../../Imports';
-import SearchBox from '../SearchBox';
+import SearchBox from './SearchBox';
 
 function Header({ cart }) {
 
