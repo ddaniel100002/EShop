@@ -52,9 +52,9 @@ productRouter.get('/search', expressAsyncHandler(async (req, res) => {
       : {};
   const sortOrder =
     order === 'lowest'
-      ? { price: 1 }
+      ? { price: 1 } //Ascending order
       : order === 'highest'
-        ? { price: -1 }
+        ? { price: -1 } //Descending order
         : order === 'toprated'
           ? { rating: -1 }
           : order === 'newest'
