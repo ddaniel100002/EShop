@@ -54,7 +54,7 @@ function ProductPage() {
             <div>
               <Row>
                 <Col md={6}>
-                  <img height={400} width={400} src={`${product.image}`} alt={product.title} />
+                  <img width={400} src={`${product.image}`} alt={product.title} />
                 </Col>
 
                 <Col md={3}>

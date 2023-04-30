@@ -14,7 +14,7 @@ function Product({ product }) {
   return (
     <Card draggable="true" onDragStart={handleDragStart} className="product-card">
       <Link to={`/product/${product.token}`}>
-        <Card.Img variant='top' src={product.image} alt={product.title} />
+        <Card.Img style={{padding: '20px'}} variant='top' src={product.image} alt={product.title} />
       </Link>
       <Card.Body className='card-body'>
         <Link to={`/product/${product.token}`}>

@@ -30,7 +30,7 @@ productRouter.get('/search', expressAsyncHandler(async (req, res) => {
     searchQuery && searchQuery !== 'all'
       ? {
         title: {
-          //like 'Contains' in ASP.NET
+          //like 'Contains' in ASP.NET!!!
           $regex: searchQuery,
           //Case-insensitive for Mongo
           $options: 'i',

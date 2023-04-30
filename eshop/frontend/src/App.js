@@ -15,7 +15,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="d-flex flex-column side-allPage">
+      <div className="d-flex flex-column side-allPage min-width">
         <ToastContainer position='bottom-center' limit={1} />
         <Header cart={cart} />
         <main>

@@ -20,7 +20,6 @@ function Header({ cart }) {
     const handleDrop = async (event) => {
         event.preventDefault();
 
-
         //Gets the item-id from the dragged item.
         const productId = event.dataTransfer.getData('text/plain');
 
@@ -40,16 +39,18 @@ function Header({ cart }) {
         <div>
             <header className="header">
                 <NavBar bg="dark" variant="dark">
+                    <Container>
                         <Link onClick={() => navigate(-1)}>
                             {location.pathname !== '/' && <i className="fa fa-arrow-left text-white align-arrow-right"> Back</i>}
                         </Link>
-                    <Container>
                         <LinkContainer to="/">
-                            <NavBar.Brand>Eshop</NavBar.Brand>
+                            <NavBar.Brand>
+                                <img width={80} src='https://companieslogo.com/img/orig/AMZN_BIG.D-8fb0be81.png?t=1632523695'/>
+                            </NavBar.Brand>
                         </LinkContainer>
                         {' '}
                         <SearchBox />
-                        <nav onDragOver={handleDragOver} onDrop={handleDrop} className='d-flex mx-auto align-items-center'>
+                        <nav onDragOver={handleDragOver} onDrop={handleDrop} className='d-flex align-items-center justify-content-end me-2 ms-4'>
                             <Link to='/cart' className='nav-link'>
                                 <i className='fas fa-shopping-cart text-white'></i>
                                 {cart.cartItems.length > 0 && (
@@ -61,7 +62,7 @@ function Header({ cart }) {
                         </nav>
                         {userInfo ? (
                             <NavDropdown className='text-white' title={userInfo.name} id='basic-nav-dropdown'>
-                                <LinkContainer to='/profile'>
+                                {/* <LinkContainer to='/profile'>
                                     <NavDropdown.Item>
                                         User Profile
                                     </NavDropdown.Item>
@@ -70,7 +71,7 @@ function Header({ cart }) {
                                     <NavDropdown.Item>
                                         Order History
                                     </NavDropdown.Item>
-                                </LinkContainer>
+                                </LinkContainer> */}
                                 <NavDropdown.Divider />
                                 <Link onClick={signoutHandler} to='#signout' className='dropdown-item'>Sign Out</Link>
                             </NavDropdown>

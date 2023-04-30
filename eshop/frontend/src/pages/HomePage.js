@@ -30,7 +30,10 @@ function HomePage() {
   return (
     <div>
       <Title title='E-Shop' />
-      <h1>Products</h1>
+
+      <div className='backgroundHomePage'>
+        <img style={{width: '100%'}} src='https://m.media-amazon.com/images/I/81d5OrWJAkL._SX3000_.jpg'/>
+      </div>
       <div className="products">
         {loading ? <Loading />
           :

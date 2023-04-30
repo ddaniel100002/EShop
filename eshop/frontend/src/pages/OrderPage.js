@@ -52,7 +52,7 @@ const OrderPage = () => {
             ) : (
                 <div>
                     <Title title='Order' />
-                    <h1 className='my-3'>Order</h1>
+                    <h1 className='my-3'>Order: {order._id.substr(order._id.length - 6)}</h1>
                     <Row>
                         <Col md={8}>
                             <Card className='mb-3'>
